@@ -18,6 +18,8 @@ import SectionHeading from '../components/SectionHeading'
 import CTASection from '../components/CTASection'
 import Reveal from '../components/Reveal'
 import PageMeta from '../components/PageMeta'
+import Icon from '../components/Icon'
+import { whatsappHref } from '../components/WhatsAppButton'
 
 export const telHref = (number) => `tel:${number.replace(/[^\d+]/g, '')}`
 
@@ -76,10 +78,19 @@ export default function Contact() {
             <Box component="ul" sx={{ listStyle: 'none', p: 0, m: 0, display: 'grid', gap: 1.5 }}>
               <InfoCard icon={<PlaceOutlined />} label={contact.addressLabel}>{contact.address}</InfoCard>
               <InfoCard icon={<MailOutlined />} label="Email us"><a href={`mailto:${contact.email}`}>{contact.email}</a></InfoCard>
-              <InfoCard icon={<PhoneOutlined />} label="Call us">
+              <InfoCard icon={<PhoneOutlined />} label="Call / WhatsApp us">
                 {contact.phones.map((p) => (
                   <Box component="span" key={p.id} sx={{ display: 'block', mt: 0.75 }}>
-                    <Box component="a" href={telHref(p.number)} sx={{ fontWeight: 600, color: `${brand.navy} !important`, textDecoration: 'none', '&:hover': { color: '#A9843A !important' } }}>{p.number}</Box>
+                    <Box component="span" sx={{ display: 'inline-flex', alignItems: 'center', gap: 1 }}>
+                      <Box component="a" href={telHref(p.number)} aria-label={`Call ${p.name} on ${p.number}`}
+                        sx={{ fontWeight: 600, color: `${brand.navy} !important`, textDecoration: 'none', '&:hover': { color: '#A9843A !important' } }}>{p.number}</Box>
+                      {p.whatsapp && (
+                        <Box component="a" href={whatsappHref(p.number)} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp ${p.name} on ${p.number}`} title="Chat on WhatsApp"
+                          sx={{ display: 'inline-grid', placeItems: 'center', width: 30, height: 30, borderRadius: '50%', bgcolor: '#25D366', color: '#fff !important', transition: 'transform .2s', '&:hover': { transform: 'scale(1.1)' } }}>
+                          <Icon name="whatsapp" sx={{ fontSize: 18 }} />
+                        </Box>
+                      )}
+                    </Box>
                     <Box component="span" sx={{ display: 'block', fontSize: '0.8rem', lineHeight: 1.4 }}>{p.name}</Box>
                   </Box>
                 ))}

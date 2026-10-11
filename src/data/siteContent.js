@@ -1,4 +1,4 @@
-import { images } from './media'
+import { images, galleryMedia } from './media'
 
 export const company = {
   name: 'KINGSSS IMPORT EXPORT LLP',
@@ -13,13 +13,13 @@ export const contact = {
   address: 'B-11, Terminal Market, Muhana Mandi, Jaipur, Rajasthan 302029, India',
   mapQuery: 'Terminal Market, Muhana Mandi, Jaipur, Rajasthan 302029', // used for the Google Maps embed
   email: 'info@kingsssimportexportllp.com',
+  // whatsapp: true lists the number in the WhatsApp chat menu and on the contact page.
   phones: [
-    { id: 'shahid', name: 'Shahid Ali', number: '+91 94627 99539' },
-    { id: 'sandeep', name: 'Sandeep Singh Rathor', number: '+91 98285 21041' },
-    { id: 'jai', name: 'Jai Kumar Agarwal', number: '+91 98280 11300' },
+    { id: 'sandeep', name: 'Sandeep Singh Rathor', number: '+91 98285 21041', whatsapp: true },
+    { id: 'shahid', name: 'Shahid Ali', number: '+91 94627 99539', whatsapp: true },
+    { id: 'jai', name: 'Jai Kumar Agarwal', number: '+91 98280 11300', whatsapp: true },
   ],
   hours: 'Business hours — to be added',
-  whatsapp: '', // e.g. '+91 00000 00000'; shows a floating WhatsApp chat button when set
 }
 
 export const socialLinks = [
@@ -176,9 +176,9 @@ export const processPage = {
 export const galleryPage = {
   banner: {
     title: 'Gallery',
-    subtitle: 'A glimpse of farms, produce and the journey to market.',
-    image: images.vineyard,
-    imageAlt: 'Grape bunches on the vine at sunrise',
+    subtitle: 'Moments from trade fairs, partner visits and shipments.',
+    image: galleryMedia['trade-fair-meeting.webp'],
+    imageAlt: 'KINGSSS team in a meeting at an international fruit trade fair stand',
   },
 }
 

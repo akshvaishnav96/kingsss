@@ -66,9 +66,9 @@ function Tile({ item, onOpen }) {
   const isVideo = item.type === 'video'
   return (
     <Box component="button" type="button" onClick={onOpen} className="zoom-host" aria-label={`${isVideo ? 'Play video' : 'View image'}: ${item.title}`}
-      sx={{ all: 'unset', boxSizing: 'border-box', cursor: 'pointer', position: 'relative', display: 'block', width: '100%', aspectRatio: '4 / 3', overflow: 'hidden', borderRadius: '4px', bgcolor: brand.navy,
+      sx={{ all: 'unset', boxSizing: 'border-box', cursor: 'pointer', position: 'relative', display: 'block', width: '100%', aspectRatio: '4 / 5', overflow: 'hidden', borderRadius: '4px', bgcolor: brand.navy,
         '&:focus-visible': { outline: `2px solid ${brand.gold}`, outlineOffset: 3 }, '&:hover .overlay, &:focus-visible .overlay': { opacity: 1 } }}>
-      <img className="zoom-img" src={item.src} alt="" loading="lazy" decoding="async" />
+      <img className="zoom-img" src={item.thumb ?? item.src} alt="" loading="lazy" decoding="async" style={{ objectPosition: 'center 30%' }} />
       <Box className="overlay" sx={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'flex-end', p: { xs: 1.25, sm: 2 }, opacity: { xs: 1, md: isVideo ? 1 : 0 }, transition: 'opacity .35s',
         background: 'linear-gradient(0deg, rgba(7,29,51,.85) 0%, rgba(7,29,51,0) 60%)' }}>
         <Typography component="span" sx={{ color: '#fff', fontWeight: 500, fontSize: { xs: '0.8rem', sm: '0.92rem' }, lineHeight: 1.3, pr: 4 }}>{item.title}</Typography>
@@ -98,7 +98,7 @@ function Lightbox({ item, index, total, onClose, onStep }) {
 
   const isVideo = item?.type === 'video'
   return (
-    <Dialog open={Boolean(item)} onClose={onClose} maxWidth="lg" fullWidth aria-labelledby="lightbox-title"
+    <Dialog open={Boolean(item)} onClose={onClose} maxWidth={isVideo ? 'sm' : 'md'} fullWidth aria-labelledby="lightbox-title"
       slotProps={{ paper: { sx: { bgcolor: brand.navy, color: '#fff', m: { xs: 1.5, sm: 4 }, width: { xs: 'calc(100% - 24px)', sm: '100%' }, maxHeight: 'calc(100% - 24px)', borderRadius: '4px', overflow: 'hidden' } },
         backdrop: { sx: { bgcolor: 'rgba(4,14,26,.88)' } } }}>
       {item && (

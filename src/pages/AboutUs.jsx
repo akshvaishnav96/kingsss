@@ -6,6 +6,7 @@ import PageBanner from '../components/PageBanner'
 import SectionHeading from '../components/SectionHeading'
 import CTASection from '../components/CTASection'
 import StatsBand from '../components/StatsBand'
+import TeamSection from '../components/TeamSection'
 import Reveal from '../components/Reveal'
 import Icon from '../components/Icon'
 import PageMeta from '../components/PageMeta'
@@ -14,7 +15,7 @@ export default function AboutUs() {
   const { banner, intro, story, pillars, values, approach } = about
   return (
     <>
-      <PageMeta title="About Us" description="Learn about KINGSSS IMPORT EXPORT LLP — our story, vision, mission, values and approach to sourcing quality fresh produce." />
+      <PageMeta title="About Us" description="Learn about KINGSSS IMPORT EXPORT LLP — our story, leadership team, vision, mission, values and approach to sourcing quality fresh produce." />
       <PageBanner {...banner} crumbs={[{ label: 'About Us' }]} />
 
       <Box component="section" sx={{ py: { xs: 9, md: 14 } }}>
@@ -36,6 +37,8 @@ export default function AboutUs() {
           </Split>
         </Container>
       </Box>
+
+      <TeamSection />
 
       <Box component="section" aria-label="Vision, mission and values" sx={{ py: { xs: 9, md: 14 } }}>
         <Container>

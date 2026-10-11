@@ -42,6 +42,7 @@ export default function Footer() {
             <Typography component="h2" sx={heading}>Quick Links</Typography>
             <Box component="ul" sx={{ listStyle: 'none', m: 0, p: 0 }}>
               {mainNav.map((l) => <li key={l.id}><Link component={RouterLink} to={l.to} sx={linkSx}>{l.label}</Link></li>)}
+              <li><Link component={RouterLink} to="/about-us#team" sx={linkSx}>Our Team</Link></li>
             </Box>
           </Box>
 

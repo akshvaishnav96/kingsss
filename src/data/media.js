@@ -1,11 +1,17 @@
 import logo from '../assets/logo/kingsss-logo.png'
 
-// Every image in src/assets/images, keyed by file name (without extension).
-// A future CMS can replace this map with URLs from the media library.
-const files = import.meta.glob('../assets/images/*.webp', { eager: true, import: 'default' })
+// Media files keyed by file name. A future CMS can replace these maps with media-library URLs.
+const byName = (files, keepExt = false) =>
+  Object.fromEntries(Object.entries(files).map(([path, url]) => {
+    const file = path.split('/').pop()
+    return [keepExt ? file : file.replace(/\.[^.]+$/, ''), url]
+  }))
 
-export const images = Object.fromEntries(
-  Object.entries(files).map(([path, url]) => [path.split('/').pop().replace('.webp', ''), url]),
-)
+// Stock / editorial images (src/assets/images)
+export const images = byName(import.meta.glob('../assets/images/*.webp', { eager: true, import: 'default' }))
+// Team portraits (src/assets/team)
+export const teamImages = byName(import.meta.glob('../assets/team/*.webp', { eager: true, import: 'default' }))
+// Company photos and videos (src/assets/gallery), keyed with extension, e.g. 'container-opening.mp4'
+export const galleryMedia = byName(import.meta.glob('../assets/gallery/**/*.{webp,mp4}', { eager: true, import: 'default' }), true)
 
 export { logo }
