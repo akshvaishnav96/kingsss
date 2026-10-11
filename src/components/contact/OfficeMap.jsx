@@ -1,9 +1,10 @@
 import { Box, Button, Container, Typography } from '@mui/material'
 import PlaceOutlined from '@mui/icons-material/PlaceOutlined'
 import { brand } from '../../theme/theme'
+import { officeMapQuery } from '../../lib/content'
 
 export default function OfficeMap({ contact }) {
-  const query = encodeURIComponent(contact.mapQuery || contact.address)
+  const query = encodeURIComponent(officeMapQuery(contact))
   return (
     <Box component="section" aria-labelledby="map-title" sx={{ pb: { xs: 2, md: 4 } }}>
       <Container>

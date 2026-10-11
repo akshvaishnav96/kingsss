@@ -30,7 +30,7 @@ export function selectOptions(key, { collection, settings } = {}) {
 }
 
 export const humanize = (key) =>
-  ({ q: 'Question', a: 'Answer', cta: 'Button', href: 'Link URL', to: 'Link to page', alt: 'Image description (alt text)', imageAlt: 'Image description (alt text)', videoSrc: 'Video file', phoneId: 'Phone contact', visible: 'Show on website' }[key] ??
+  ({ q: 'Question', a: 'Answer', cta: 'Button', href: 'Link URL', to: 'Link to page', alt: 'Image description (alt text)', imageAlt: 'Image description (alt text)', videoSrc: 'Video file', phoneId: 'Phone contact', visible: 'Show on website', mapQuery: 'Map search text (used when latitude/longitude are empty)', mapLat: 'Map latitude (e.g. 26.8051)', mapLng: 'Map longitude (e.g. 75.7985)' }[key] ??
   key.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/^./, (c) => c.toUpperCase()))
 
 export const isHiddenKey = (key) => key === 'id'

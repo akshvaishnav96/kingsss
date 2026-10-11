@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Avatar, Box, ListItemAvatar, ListItemText, Menu, MenuItem, Typography } from '@mui/material'
 import { useSite } from '../hooks/useSite'
-import { whatsappContacts, whatsappHref } from '../lib/content'
+import { orderPhones, whatsappContacts, whatsappHref } from '../lib/content'
+import { phoneOrder } from '../config/contactOrder'
 import Icon from './Icon'
 
 const GREEN = '#25D366'
@@ -9,7 +10,7 @@ const GREEN = '#25D366'
 // Floating chat button that opens a menu to pick which team member to message.
 export default function WhatsAppButton() {
   const [anchor, setAnchor] = useState(null)
-  const contacts = whatsappContacts(useSite().contact)
+  const contacts = orderPhones(whatsappContacts(useSite().contact), phoneOrder.whatsappButton)
   if (!contacts.length) return null
 
   return (

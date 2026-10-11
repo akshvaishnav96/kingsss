@@ -11,7 +11,9 @@ export const company = {
 export const contact = {
   addressLabel: 'Head Office',
   address: 'B-11, Terminal Market, Muhana Mandi, Jaipur, Rajasthan 302029, India',
-  mapQuery: 'Terminal Market, Muhana Mandi, Jaipur, Rajasthan 302029', // used for the Google Maps embed
+  mapQuery: 'Terminal Market, Muhana Mandi, Jaipur, Rajasthan 302029', // used for the map when lat/lng are empty
+  mapLat: '', // exact office pin, e.g. 26.8051 (Google Maps → right-click the office → copy coordinates)
+  mapLng: '', // e.g. 75.7985
   email: 'info@kingsssimportexportllp.com',
   // whatsapp: true lists the number in the WhatsApp chat menu and on the contact page.
   phones: [

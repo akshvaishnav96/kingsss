@@ -57,6 +57,11 @@ export const collections = {
   },
 }
 
+// Fields shown in a content block even when the saved data predates them (merged under the saved values).
+export const settingDefaults = {
+  contact: { mapLat: '', mapLng: '' },
+}
+
 // Templates for lists that may be empty in the database.
 export const listTemplates = {
   stats: { id: '', value: '', label: '' },

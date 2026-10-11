@@ -5,7 +5,8 @@ import MailOutlined from '@mui/icons-material/MailOutlined'
 import PhoneOutlined from '@mui/icons-material/PhoneOutlined'
 import { mainNav } from '../data/navigation'
 import { useSite } from '../hooks/useSite'
-import { telHref } from '../lib/content'
+import { orderPhones, telHref } from '../lib/content'
+import { phoneOrder } from '../config/contactOrder'
 import logo from '../assets/logo/kingsss-logo.png'
 import { brand } from '../theme/theme'
 import Icon from './Icon'
@@ -62,7 +63,7 @@ export default function Footer() {
                 <Link href={`mailto:${contact.email}`} sx={linkSx}>{contact.email}</Link>
               </ContactRow>
               <ContactRow icon={<PhoneOutlined />}>
-                {contact.phones.map((p) => (
+                {orderPhones(contact.phones, phoneOrder.footer).map((p) => (
                   <Box key={p.id} sx={{ lineHeight: 1.5, mb: 0.75 }}>
                     <Link href={telHref(p.number)} sx={{ ...linkSx, lineHeight: 1.5 }}>{p.number}</Link>
                     <Box component="span" sx={{ display: 'block', fontSize: '0.8rem', color: 'rgba(255,255,255,.5)' }}>{p.name}</Box>

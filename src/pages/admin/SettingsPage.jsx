@@ -1,6 +1,6 @@
 import { useParams } from 'react-router'
 import { Box, CircularProgress } from '@mui/material'
-import { pageGroups } from '../../config/admin'
+import { pageGroups, settingDefaults } from '../../config/admin'
 import { useSettings } from '../../hooks/admin/useSettings'
 import PageHeader from '../../components/admin/PageHeader'
 import SettingBlock from '../../components/admin/SettingBlock'
@@ -18,7 +18,7 @@ export default function SettingsPage() {
       {isPending ? <CircularProgress /> : (
         <Box sx={{ display: 'grid', gap: 3 }}>
           {group.keys.map((key) => (
-            <SettingBlock key={key} settingKey={key} value={settings[key] ?? (key === 'stats' || key === 'socialLinks' ? [] : {})} ctx={{ settings }} />
+            <SettingBlock key={key} settingKey={key} value={settingDefaults[key] ? { ...settingDefaults[key], ...settings[key] } : settings[key] ?? (key === 'stats' || key === 'socialLinks' ? [] : {})} ctx={{ settings }} />
           ))}
         </Box>
       )}

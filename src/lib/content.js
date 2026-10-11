@@ -19,6 +19,19 @@ export const whatsappContacts = (contact) => (contact?.phones ?? []).filter((p) 
 
 export const phoneById = (contact, id) => contact?.phones?.find((p) => p.id === id)
 
+// Google Maps query for the office: exact lat/lng when both are valid, otherwise the search text / address.
+export function officeMapQuery(contact = {}) {
+  const lat = parseFloat(contact.mapLat), lng = parseFloat(contact.mapLng)
+  if (Number.isFinite(lat) && Number.isFinite(lng) && Math.abs(lat) <= 90 && Math.abs(lng) <= 180) return `${lat},${lng}`
+  return contact.mapQuery || contact.address || ''
+}
+
+// Sorts phones by a list of ids; ids not in the list keep their original order at the end.
+export const orderPhones = (phones = [], ids = []) => {
+  const rank = (p) => (ids.includes(p.id) ? ids.indexOf(p.id) : ids.length)
+  return [...phones].sort((a, b) => rank(a) - rank(b))
+}
+
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
 // Mirrors server/src/validators/enquiry.validator.js
