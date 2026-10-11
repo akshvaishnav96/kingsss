@@ -11,10 +11,11 @@ export default function TeamSection() {
   const { directors, mentor, teamSection, contact } = useSite()
   return (
     <Box component="section" id="team" aria-labelledby="team-title" sx={{ scrollMarginTop: 72 }}>
-      <Box sx={{ bgcolor: brand.navy, color: '#fff', pt: { xs: 9, md: 12 }, pb: { xs: 16, md: 20 },
+      <Box sx={{ bgcolor: brand.navy, color: '#fff', pt: { xs: 8, md: 10 }, pb: { xs: 13, md: 16 },
         backgroundImage: 'radial-gradient(ellipse at 0% 0%, rgba(214,173,82,.16), transparent 50%), radial-gradient(ellipse at 100% 100%, rgba(11,39,68,1), transparent 60%)' }}>
         <Container>
           <SectionHeading eyebrow={teamSection.eyebrow} title={<span id="team-title">{teamSection.title}</span>} text={teamSection.text} light align="center" sx={{ mb: 0 }} />
+          {mentor?.visible !== false && <MentorCard person={mentor} />}
         </Container>
       </Box>
 
@@ -27,24 +28,24 @@ export default function TeamSection() {
             </Reveal>
           ))}
         </Box>
-        {mentor?.visible !== false && <MentorCard person={mentor} />}
       </Container>
     </Box>
   )
 }
 
-// Deliberately understated: present, but not more prominent than the directors.
+// Sits between the heading and the directors. Deliberately understated: present, but not more prominent than the directors.
 function MentorCard({ person }) {
   return (
     <Reveal>
-      <Box component="aside" aria-label={person.role} sx={{ mt: { xs: 5, md: 7 }, mx: 'auto', maxWidth: 760, display: 'flex', alignItems: 'center', gap: { xs: 2, sm: 3 },
-        p: { xs: 2.5, sm: 3 }, bgcolor: brand.soft, borderRadius: '4px', border: '1px solid rgba(7,29,51,.08)', borderLeft: `3px solid ${brand.gold}` }}>
+      <Box component="aside" aria-label={person.role} sx={{ mt: { xs: 3.5, md: 4.5 }, mx: 'auto', maxWidth: 760, display: 'flex', alignItems: 'center', gap: { xs: 2, sm: 3 },
+        p: { xs: 2.5, sm: 3 }, borderRadius: '6px', bgcolor: 'rgba(255,255,255,.05)', backdropFilter: 'blur(6px)',
+        border: '1px solid rgba(214,173,82,.28)', borderLeft: `3px solid ${brand.gold}`, boxShadow: '0 20px 40px -28px rgba(0,0,0,.6)' }}>
         <Box component="img" src={person.image} alt={person.imageAlt} loading="lazy" decoding="async"
-          sx={{ width: { xs: 64, sm: 80 }, height: { xs: 64, sm: 80 }, borderRadius: '50%', objectFit: 'cover', objectPosition: 'center 20%', flexShrink: 0, border: '2px solid #fff', boxShadow: '0 0 0 1px rgba(214,173,82,.6)' }} />
+          sx={{ width: { xs: 64, sm: 80 }, height: { xs: 64, sm: 80 }, borderRadius: '50%', objectFit: 'cover', objectPosition: 'center 20%', flexShrink: 0, border: `2px solid ${brand.navy}`, boxShadow: `0 0 0 2px ${brand.gold}` }} />
         <Box sx={{ minWidth: 0 }}>
-          <Typography variant="overline" component="p" sx={{ color: '#A9843A', lineHeight: 1.4, fontSize: '0.66rem' }}>{person.role}</Typography>
-          <Typography sx={{ fontFamily: '"Playfair Display", serif', fontWeight: 600, color: brand.navy, fontSize: '1.05rem' }}>{person.name}</Typography>
-          <Typography variant="body2" sx={{ color: 'text.secondary', mt: 0.25 }}>{person.text}</Typography>
+          <Typography variant="overline" component="p" sx={{ color: brand.goldLight, lineHeight: 1.4, fontSize: '0.66rem' }}>{person.role}</Typography>
+          <Typography sx={{ fontFamily: '"Playfair Display", serif', fontWeight: 600, color: '#fff', fontSize: '1.05rem' }}>{person.name}</Typography>
+          <Typography variant="body2" sx={{ color: 'rgba(255,255,255,.72)', mt: 0.25 }}>{person.text}</Typography>
         </Box>
       </Box>
     </Reveal>
