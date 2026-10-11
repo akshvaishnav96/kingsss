@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { Accordion, AccordionDetails, AccordionSummary, Box, Container, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import { brand } from '../theme/theme'
-import { faqs } from '../data/services'
+import { useSite } from '../hooks/useSite'
 import SectionHeading from './SectionHeading'
 
-export default function FAQSection({ items = faqs, id = 'faq' }) {
+export default function FAQSection({ id = 'faq' }) {
+  const { faqs: items } = useSite()
   const [open, setOpen] = useState(items[0]?.id)
   return (
     <Box component="section" id={id} aria-labelledby={`${id}-title`} sx={{ py: { xs: 8, md: 12 }, scrollMarginTop: 80 }}>

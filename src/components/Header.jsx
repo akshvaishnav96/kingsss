@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
-import { NavLink, Link as RouterLink, useLocation } from 'react-router'
-import { Box, Container, Drawer, IconButton, Stack, useScrollTrigger } from '@mui/material'
+import { NavLink, Link as RouterLink } from 'react-router'
+import { Box, Container, Drawer, IconButton, Stack } from '@mui/material'
 import { motion } from 'motion/react'
 import MenuIcon from '@mui/icons-material/Menu'
 import CloseIcon from '@mui/icons-material/Close'
 import SearchIcon from '@mui/icons-material/Search'
 import { mainNav, enquireLink } from '../data/navigation'
-import { contact } from '../data/siteContent'
-import { logo } from '../data/media'
+import { useSite } from '../hooks/useSite'
+import { useHeaderState } from '../hooks/useHeaderState'
+import { telHref } from '../lib/content'
+import logo from '../assets/logo/kingsss-logo.png'
 import { brand } from '../theme/theme'
 import LinkButton from './LinkButton'
 import SearchDialog from './SearchDialog'
@@ -15,16 +16,8 @@ import SearchDialog from './SearchDialog'
 const desktop = '@media (min-width: 1100px)'
 
 export default function Header() {
-  const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 24 })
-  const [drawerOpen, setDrawerOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
-  const { pathname } = useLocation()
-
-  useEffect(() => {
-    setDrawerOpen(false)
-  }, [pathname])
-
-  const isActive = (to) => (to === '/' ? pathname === '/' : pathname.startsWith(to))
+  const { contact } = useSite()
+  const { scrolled, drawer, search, isActive } = useHeaderState()
 
   return (
     <Box
@@ -74,13 +67,13 @@ export default function Header() {
           </Stack>
         </Box>
 
-        <IconButton aria-label="Search products" onClick={() => setSearchOpen(true)} sx={{ color: '#fff', width: 44, height: 44, '&:hover': { color: brand.goldLight } }}>
+        <IconButton aria-label="Search products" onClick={search.open} sx={{ color: '#fff', width: 44, height: 44, '&:hover': { color: brand.goldLight } }}>
           <SearchIcon />
         </IconButton>
         <LinkButton to={enquireLink.to} size="small" sx={{ display: 'none', [desktop]: { display: 'inline-flex' }, minHeight: 44, px: 3 }}>
           {enquireLink.label}
         </LinkButton>
-        <IconButton aria-label="Open menu" aria-controls="mobile-menu" aria-expanded={drawerOpen} onClick={() => setDrawerOpen(true)}
+        <IconButton aria-label="Open menu" aria-controls="mobile-menu" aria-expanded={drawer.isOpen} onClick={drawer.open}
           sx={{ color: '#fff', width: 44, height: 44, mr: -1, [desktop]: { display: 'none' } }}>
           <MenuIcon />
         </IconButton>
@@ -89,14 +82,14 @@ export default function Header() {
       <Drawer
         id="mobile-menu"
         anchor="right"
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
+        open={drawer.isOpen}
+        onClose={drawer.close}
         sx={{ [desktop]: { display: 'none' } }}
         slotProps={{ paper: { sx: { width: 'min(88vw, 380px)', bgcolor: brand.navy, color: '#fff', backgroundImage: 'radial-gradient(ellipse at 100% 0%, rgba(214,173,82,.16), transparent 60%)' } } }}
       >
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 2.5, height: 68, borderBottom: '1px solid rgba(255,255,255,.08)' }}>
           <Box component="img" src={logo} alt="KINGSSS Import Export LLP" sx={{ height: 36, width: 'auto' }} />
-          <IconButton aria-label="Close menu" onClick={() => setDrawerOpen(false)} sx={{ color: '#fff', width: 44, height: 44 }}>
+          <IconButton aria-label="Close menu" onClick={drawer.close} sx={{ color: '#fff', width: 44, height: 44 }}>
             <CloseIcon />
           </IconButton>
         </Box>
@@ -119,7 +112,7 @@ export default function Header() {
         <Box sx={{ px: 2.5, py: 3, borderTop: '1px solid rgba(255,255,255,.08)' }}>
           <Box component="a" href={`mailto:${contact.email}`} sx={{ display: 'block', color: brand.goldLight, fontSize: '0.88rem', mb: 1.5, overflowWrap: 'anywhere' }}>{contact.email}</Box>
           {contact.phones.map((p) => (
-            <Box key={p.id} component="a" href={`tel:${p.number.replace(/[^\d+]/g, '')}`}
+            <Box key={p.id} component="a" href={telHref(p.number)}
               sx={{ display: 'flex', justifyContent: 'space-between', gap: 1, py: 0.5, color: 'rgba(255,255,255,.75)', textDecoration: 'none', fontSize: '0.86rem', '&:hover': { color: brand.goldLight } }}>
               <span>{p.name}</span><span>{p.number}</span>
             </Box>
@@ -127,7 +120,7 @@ export default function Header() {
         </Box>
       </Drawer>
 
-      <SearchDialog open={searchOpen} onClose={() => setSearchOpen(false)} />
+      <SearchDialog open={search.isOpen} onClose={search.close} />
     </Box>
   )
 }

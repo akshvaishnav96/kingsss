@@ -58,6 +58,8 @@ const icons = {
   water: WaterDropOutlined,
 }
 
+export const iconNames = Object.keys(icons)
+
 export default function Icon({ name, ...props }) {
   const Component = icons[name] ?? SpaOutlined
   return <Component aria-hidden="true" {...props} />

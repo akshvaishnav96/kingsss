@@ -1,18 +1,16 @@
 import { useState } from 'react'
 import { Avatar, Box, ListItemAvatar, ListItemText, Menu, MenuItem, Typography } from '@mui/material'
-import { contact } from '../data/siteContent'
+import { useSite } from '../hooks/useSite'
+import { whatsappContacts, whatsappHref } from '../lib/content'
 import Icon from './Icon'
 
 const GREEN = '#25D366'
-const greeting = 'Hello KINGSSS, I would like to enquire about'
-
-export const whatsappContacts = contact.phones.filter((p) => p.whatsapp)
-export const whatsappHref = (number) => `https://wa.me/${number.replace(/\D/g, '')}?text=${encodeURIComponent(greeting)}`
 
 // Floating chat button that opens a menu to pick which team member to message.
 export default function WhatsAppButton() {
   const [anchor, setAnchor] = useState(null)
-  if (!whatsappContacts.length) return null
+  const contacts = whatsappContacts(useSite().contact)
+  if (!contacts.length) return null
 
   return (
     <>
@@ -36,7 +34,7 @@ export default function WhatsAppButton() {
           <Typography sx={{ fontWeight: 600 }}>Chat on WhatsApp</Typography>
           <Typography variant="body2" sx={{ opacity: 0.9, fontSize: '0.8rem' }}>Choose who you would like to message</Typography>
         </Box>
-        {whatsappContacts.map((p) => (
+        {contacts.map((p) => (
           <MenuItem key={p.id} component="a" href={whatsappHref(p.number)} target="_blank" rel="noopener noreferrer" onClick={() => setAnchor(null)} sx={{ py: 1.25 }}>
             <ListItemAvatar sx={{ minWidth: 48 }}>
               <Avatar sx={{ bgcolor: 'rgba(37,211,102,.14)', color: '#128C7E', width: 36, height: 36 }}><Icon name="whatsapp" fontSize="small" /></Avatar>

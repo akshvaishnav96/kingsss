@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           Int       @id @default(autoincrement())
+  email        String    @unique
+  name         String    @default("")
+  passwordHash String    @map("password_hash")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  sessions     Session[]
+
+  @@map("users")
+}
+
+model Session {
+  tokenHash String   @id @map("token_hash")
+  userId    Int      @map("user_id")
+  expiresAt DateTime @map("expires_at")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([expiresAt])
+  @@map("sessions")
+}
+
+/// Singleton content blocks (page copy, company details, ...), one JSON document per key.
+model Setting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("settings")
+}
+
+/// Ordered content collections: products, galleryItems, services, faqs, directors.
+model Item {
+  id         Int      @id @default(autoincrement())
+  collection String
+  slug       String?
+  position   Int      @default(0)
+  published  Boolean  @default(true)
+  data       Json
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@unique([collection, slug])
+  @@index([collection, position])
+  @@map("items")
+}
+
+model Enquiry {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  company   String   @default("")
+  subject   String
+  message   String
+  status    String   @default("new")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([status, createdAt])
+  @@map("enquiries")
+}
+
+model Media {
+  id        Int      @id @default(autoincrement())
+  url       String
+  thumbUrl  String?  @map("thumb_url")
+  type      String
+  filename  String
+  size      Int
+  /// "local" (server/uploads) or "cloudinary"
+  provider  String   @default("local")
+  /// Cloudinary public_id, used to delete the remote file
+  publicId  String?  @map("public_id")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("media")
+}

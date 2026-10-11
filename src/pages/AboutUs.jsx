@@ -1,7 +1,7 @@
 import { Box, Container, Typography } from '@mui/material'
 import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined'
 import { brand } from '../theme/theme'
-import { about } from '../data/siteContent'
+import { useSite } from '../hooks/useSite'
 import PageBanner from '../components/PageBanner'
 import SectionHeading from '../components/SectionHeading'
 import CTASection from '../components/CTASection'
@@ -12,7 +12,7 @@ import Icon from '../components/Icon'
 import PageMeta from '../components/PageMeta'
 
 export default function AboutUs() {
-  const { banner, intro, story, pillars, values, approach } = about
+  const { banner, intro, story, pillars, values, approach } = useSite().about
   return (
     <>
       <PageMeta title="About Us" description="Learn about KINGSSS IMPORT EXPORT LLP — our story, leadership team, vision, mission, values and approach to sourcing quality fresh produce." />

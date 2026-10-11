@@ -1,20 +1,19 @@
 import { Box, Container, Typography } from '@mui/material'
 import { Link as LinkBox } from 'react-router'
 import { brand } from '../theme/theme'
-import { home } from '../data/siteContent'
-import { products } from '../data/products'
+import { useSite } from '../hooks/useSite'
 import HeroSection from '../components/HeroSection'
 import SectionHeading from '../components/SectionHeading'
 import ProductGrid from '../components/ProductGrid'
 import DualCTA from '../components/DualCTA'
 import StatsBand from '../components/StatsBand'
-import { services } from '../data/services'
 import LinkButton from '../components/LinkButton'
 import Reveal from '../components/Reveal'
 import Icon from '../components/Icon'
 import PageMeta from '../components/PageMeta'
 
 export default function Home() {
+  const { home, products } = useSite()
   const featured = products.filter((p) => p.featured)
   return (
     <>
@@ -153,6 +152,7 @@ function WhyChooseUs({ content }) {
 }
 
 function ServicesTeaser() {
+  const { services } = useSite()
   return (
     <Box component="section" aria-labelledby="services-title" sx={{ pt: { xs: 9, md: 14 } }}>
       <Container>

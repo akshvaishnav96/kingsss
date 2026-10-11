@@ -1,7 +1,7 @@
 import { Box, Container, Typography } from '@mui/material'
 import CheckIcon from '@mui/icons-material/Check'
 import { brand } from '../theme/theme'
-import { servicesPage, services, audiences, engagementSteps } from '../data/services'
+import { useSite } from '../hooks/useSite'
 import PageBanner from '../components/PageBanner'
 import SectionHeading from '../components/SectionHeading'
 import DualCTA from '../components/DualCTA'
@@ -11,6 +11,7 @@ import Icon from '../components/Icon'
 import PageMeta from '../components/PageMeta'
 
 export default function Services() {
+  const { servicesPage, services, audiences, engagementSteps } = useSite()
   return (
     <>
       <PageMeta title="Services" description="Sourcing, quality inspection, packing and private labelling, cold chain, export documentation and freight coordination for fresh produce." />

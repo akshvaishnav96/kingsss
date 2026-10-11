@@ -1,17 +1,14 @@
 import { Box, Button, Container, Typography } from '@mui/material'
 import PhoneOutlined from '@mui/icons-material/PhoneOutlined'
 import { brand } from '../theme/theme'
-import { directors, mentor, teamSection } from '../data/team'
-import { contact } from '../data/siteContent'
-import { whatsappHref } from './WhatsAppButton'
+import { useSite } from '../hooks/useSite'
+import { phoneById, telHref, whatsappHref } from '../lib/content'
 import SectionHeading from './SectionHeading'
 import Reveal from './Reveal'
 import Icon from './Icon'
 
-const phoneFor = (id) => contact.phones.find((p) => p.id === id)
-const telHref = (number) => `tel:${number.replace(/[^\d+]/g, '')}`
-
 export default function TeamSection() {
+  const { directors, mentor, teamSection, contact } = useSite()
   return (
     <Box component="section" id="team" aria-labelledby="team-title" sx={{ scrollMarginTop: 72 }}>
       <Box sx={{ bgcolor: brand.navy, color: '#fff', pt: { xs: 9, md: 12 }, pb: { xs: 16, md: 20 },
@@ -26,11 +23,11 @@ export default function TeamSection() {
         <Box component="ul" sx={{ listStyle: 'none', p: 0, m: 0, display: 'grid', gap: { xs: 3, md: 3.5 }, gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' } }}>
           {directors.map((p, i) => (
             <Reveal as="li" key={p.id} delay={i * 0.1} style={{ minWidth: 0 }}>
-              <PartnerCard person={p} />
+              <PartnerCard person={p} phone={phoneById(contact, p.phoneId)} />
             </Reveal>
           ))}
         </Box>
-        <MentorCard person={mentor} />
+        {mentor?.visible !== false && <MentorCard person={mentor} />}
       </Container>
     </Box>
   )
@@ -54,8 +51,7 @@ function MentorCard({ person }) {
   )
 }
 
-function PartnerCard({ person }) {
-  const phone = phoneFor(person.phoneId)
+function PartnerCard({ person, phone }) {
   return (
     <Box component="article" className="zoom-host" sx={{ height: '100%', display: 'flex', flexDirection: 'column', bgcolor: '#fff', borderRadius: '4px', overflow: 'hidden',
       border: '1px solid rgba(7,29,51,.08)', boxShadow: '0 30px 60px -36px rgba(7,29,51,.45)', transition: 'transform .35s, box-shadow .35s',

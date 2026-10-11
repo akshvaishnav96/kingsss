@@ -1,23 +1,18 @@
-import { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Box, Dialog, IconButton, InputBase, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import CloseIcon from '@mui/icons-material/Close'
 import ArrowForward from '@mui/icons-material/ArrowForward'
-import { products } from '../data/products'
+import { useProductSearch } from '../hooks/useProductSearch'
 import { brand } from '../theme/theme'
 
-export const matchesQuery = (product, query) =>
-  `${product.name} ${product.category} ${product.shortDescription}`.toLowerCase().includes(query.trim().toLowerCase())
-
 export default function SearchDialog({ open, onClose }) {
-  const [query, setQuery] = useState('')
+  const { query, setQuery, results, reset } = useProductSearch()
   const navigate = useNavigate()
-  const results = query.trim() ? products.filter((p) => matchesQuery(p, query)) : products.slice(0, 6)
 
   const go = (to) => {
     onClose()
-    setQuery('')
+    reset()
     navigate(to)
   }
 

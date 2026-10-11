@@ -2,16 +2,17 @@ import { Box, Container, Typography } from '@mui/material'
 import { motion } from 'motion/react'
 import CheckIcon from '@mui/icons-material/Check'
 import { brand } from '../theme/theme'
-import { processPage } from '../data/siteContent'
+import { useSite } from '../hooks/useSite'
 import PageBanner from '../components/PageBanner'
 import SectionHeading from '../components/SectionHeading'
 import CTASection from '../components/CTASection'
 import Reveal from '../components/Reveal'
 import PageMeta from '../components/PageMeta'
 import Icon from '../components/Icon'
-import { quality } from '../data/services'
+
 
 export default function OurProcess() {
+  const { processPage, quality } = useSite()
   const { banner, intro, steps } = processPage
   return (
     <>

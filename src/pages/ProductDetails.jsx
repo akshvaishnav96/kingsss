@@ -5,7 +5,7 @@ import CheckCircleOutlined from '@mui/icons-material/CheckCircleOutlined'
 import Inventory2Outlined from '@mui/icons-material/Inventory2Outlined'
 import InfoOutlined from '@mui/icons-material/InfoOutlined'
 import { brand } from '../theme/theme'
-import { getProduct, getRelatedProducts, productCategories } from '../data/products'
+import { useProductDetails } from '../hooks/useProductDetails'
 import SectionHeading from '../components/SectionHeading'
 import ProductGrid from '../components/ProductGrid'
 import LinkButton from '../components/LinkButton'
@@ -15,11 +15,8 @@ import NotFound from './NotFound'
 
 export default function ProductDetails() {
   const { slug } = useParams()
-  const product = getProduct(slug)
+  const { product, category, related, enquireTo } = useProductDetails(slug)
   if (!product) return <NotFound />
-
-  const category = productCategories.find((c) => c.id === product.category)
-  const enquireTo = `/contact?subject=${encodeURIComponent(`Product enquiry: ${product.name}`)}`
 
   return (
     <>
@@ -120,7 +117,7 @@ export default function ProductDetails() {
         <Container>
           <SectionHeading eyebrow="You may also like" title={<span id="related-title">Related products</span>}
             action={<LinkButton to="/products" variant="outline" arrow>View All Products</LinkButton>} />
-          <ProductGrid products={getRelatedProducts(product)} />
+          <ProductGrid products={related} />
         </Container>
       </Box>
     </>

@@ -1,10 +1,11 @@
 import { Box, Container, Stack, Typography } from '@mui/material'
 import { brand } from '../theme/theme'
-import { home } from '../data/siteContent'
+import { useSite } from '../hooks/useSite'
 import LinkButton from './LinkButton'
 import Reveal from './Reveal'
 
-export default function CTASection({ content = home.cta }) {
+export default function CTASection({ content: override }) {
+  const content = override ?? useSite().home.cta
   return (
     <Box component="section" sx={{ py: { xs: 8, md: 12 }, bgcolor: '#fff' }}>
       <Container>

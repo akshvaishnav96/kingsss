@@ -1,11 +1,12 @@
 import { Box, Container, Typography } from '@mui/material'
 import { brand } from '../theme/theme'
-import { dualCta } from '../data/services'
+import { useSite } from '../hooks/useSite'
 import LinkButton from './LinkButton'
 import Reveal from './Reveal'
 
 // Two audience panels: buyers and suppliers, each with its own enquiry route.
-export default function DualCTA({ content = dualCta }) {
+export default function DualCTA() {
+  const { dualCta: content } = useSite()
   return (
     <Box component="section" aria-label="Work with us" sx={{ py: { xs: 8, md: 12 } }}>
       <Container sx={{ display: 'grid', gap: { xs: 2.5, md: 3 }, gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' } }}>

@@ -4,9 +4,9 @@ import PlaceOutlined from '@mui/icons-material/PlaceOutlined'
 import MailOutlined from '@mui/icons-material/MailOutlined'
 import PhoneOutlined from '@mui/icons-material/PhoneOutlined'
 import { mainNav } from '../data/navigation'
-import { products } from '../data/products'
-import { company, contact, socialLinks } from '../data/siteContent'
-import { logo } from '../data/media'
+import { useSite } from '../hooks/useSite'
+import { telHref } from '../lib/content'
+import logo from '../assets/logo/kingsss-logo.png'
 import { brand } from '../theme/theme'
 import Icon from './Icon'
 
@@ -14,6 +14,7 @@ const heading = { fontFamily: 'inherit', fontSize: '0.78rem', fontWeight: 600, l
 const linkSx = { color: 'rgba(255,255,255,.72)', textDecoration: 'none', fontSize: '0.92rem', lineHeight: 2.2, transition: 'color .2s', '&:hover': { color: brand.goldLight } }
 
 export default function Footer() {
+  const { products, company, contact, socialLinks } = useSite()
   return (
     <Box component="footer" sx={{ bgcolor: brand.navy, color: 'rgba(255,255,255,.72)', position: 'relative', overflow: 'hidden',
       borderTop: `2px solid ${brand.gold}`, backgroundImage: 'radial-gradient(ellipse at 90% 0%, rgba(11,39,68,1), transparent 60%)' }}>
@@ -63,7 +64,7 @@ export default function Footer() {
               <ContactRow icon={<PhoneOutlined />}>
                 {contact.phones.map((p) => (
                   <Box key={p.id} sx={{ lineHeight: 1.5, mb: 0.75 }}>
-                    <Link href={`tel:${p.number.replace(/[^\d+]/g, '')}`} sx={{ ...linkSx, lineHeight: 1.5 }}>{p.number}</Link>
+                    <Link href={telHref(p.number)} sx={{ ...linkSx, lineHeight: 1.5 }}>{p.number}</Link>
                     <Box component="span" sx={{ display: 'block', fontSize: '0.8rem', color: 'rgba(255,255,255,.5)' }}>{p.name}</Box>
                   </Box>
                 ))}

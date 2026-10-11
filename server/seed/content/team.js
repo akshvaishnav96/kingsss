@@ -42,6 +42,7 @@ export const directors = [
 // Not a business role: a respected elder whose personal blessings and guidance the directors value.
 // Shown modestly beneath the directors.
 export const mentor = {
+  visible: true, // admin toggle: show or hide this card on the website
   id: 'blessings',
   name: 'Shri Agarwal', // TODO: full name
   role: 'With the blessings & guidance of',

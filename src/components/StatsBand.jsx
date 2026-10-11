@@ -1,10 +1,11 @@
 import { Box, Container, Typography } from '@mui/material'
 import { brand } from '../theme/theme'
-import { stats } from '../data/services'
+import { useSite } from '../hooks/useSite'
 import Reveal from './Reveal'
 
-// Renders only once verified figures are added to `stats` in src/data/services.js.
-export default function StatsBand({ items = stats }) {
+// Hidden until figures are added in Admin → Home page → Stats.
+export default function StatsBand() {
+  const { stats: items } = useSite()
   if (!items.length) return null
   return (
     <Box component="section" aria-label="Company in numbers" sx={{ bgcolor: brand.soft, py: { xs: 6, md: 8 } }}>
