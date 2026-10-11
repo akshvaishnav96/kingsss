@@ -13,7 +13,7 @@ import { brand } from '../theme/theme'
 import LinkButton from './LinkButton'
 import SearchDialog from './SearchDialog'
 
-const desktop = '@media (min-width: 1100px)'
+const desktop = '@media (min-width: 1200px)'
 
 export default function Header() {
   const { contact } = useSite()
@@ -39,7 +39,7 @@ export default function Header() {
         </Box>
 
         <Box component="nav" aria-label="Main" sx={{ display: 'none', [desktop]: { display: 'block' } }}>
-          <Stack component="ul" direction="row" sx={{ listStyle: 'none', m: 0, p: 0, gap: { md: 0.5, lg: 1.5 } }}>
+          <Stack component="ul" direction="row" sx={{ listStyle: 'none', m: 0, p: 0, gap: 0.25, '@media (min-width: 1280px)': { gap: 1.5 } }}>
             {mainNav.map((item) => {
               const active = isActive(item.to)
               return (
@@ -48,7 +48,7 @@ export default function Header() {
                     component={NavLink}
                     to={item.to}
                     aria-current={active ? 'page' : undefined}
-                    sx={{ position: 'relative', display: 'block', px: 1.25, py: 1, fontSize: '0.92rem', fontWeight: 500, whiteSpace: 'nowrap',
+                    sx={{ position: 'relative', display: 'block', px: 1, py: 1, fontSize: '0.92rem', '@media (min-width: 1280px)': { px: 1.25 }, fontWeight: 500, whiteSpace: 'nowrap',
                       textDecoration: 'none', color: active ? brand.goldLight : 'rgba(255,255,255,.88)', transition: 'color .25s',
                       '&:hover': { color: brand.goldLight },
                       '&::after': { content: '""', position: 'absolute', left: 10, right: 10, bottom: 2, height: '1px', bgcolor: brand.gold,

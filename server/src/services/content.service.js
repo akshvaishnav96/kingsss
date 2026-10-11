@@ -6,7 +6,7 @@ import { HttpError, slugify } from '../lib/http.js'
 export const SETTINGS_KEYS = [
   'company', 'contact', 'socialLinks', 'home', 'dualCta', 'stats', 'about', 'teamSection', 'mentor',
   'servicesPage', 'audiences', 'engagementSteps', 'productsPage', 'productCategories', 'processPage', 'quality',
-  'galleryPage', 'galleryCategories', 'contactPage', 'contactCta', 'enquiryChecklist',
+  'galleryPage', 'galleryCategories', 'contactPage', 'contactCta', 'enquiryChecklist', 'networkPage',
 ]
 export const COLLECTIONS = { products: 'name', galleryItems: 'title', services: 'title', faqs: 'q', directors: 'name' }
 

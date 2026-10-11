@@ -8,6 +8,7 @@ export const pageGroups = [
   { id: 'products', label: 'Products page', keys: ['productsPage', 'productCategories'] },
   { id: 'process', label: 'Our Process page', keys: ['processPage', 'quality'] },
   { id: 'gallery', label: 'Gallery page', keys: ['galleryPage', 'galleryCategories'] },
+  { id: 'network', label: 'Our Network page', keys: ['networkPage'] },
   { id: 'contact', label: 'Contact page', keys: ['contactPage', 'contactCta', 'enquiryChecklist'] },
 ]
 
@@ -33,6 +34,7 @@ export const settingLabels = {
   contactPage: 'Contact page banner & form',
   contactCta: 'Contact page closing panel',
   enquiryChecklist: 'Enquiry checklist',
+  networkPage: 'Our Network — banner, intro & cities on the map',
 }
 
 export const collections = {
@@ -61,6 +63,7 @@ export const listTemplates = {
   certifications: { id: '', name: '', detail: '' },
   socialLinks: { id: '', label: '', href: '' },
   phones: { id: '', name: '', number: '', whatsapp: true },
+  cities: { id: '', name: '', state: '', region: 'North', lat: 0, lng: 0, headOffice: false },
 }
 
 export const enquiryStatuses = [

@@ -11,6 +11,7 @@ const Services = lazy(() => import('../pages/Services'))
 const Products = lazy(() => import('../pages/Products'))
 const ProductDetails = lazy(() => import('../pages/ProductDetails'))
 const OurProcess = lazy(() => import('../pages/OurProcess'))
+const OurNetwork = lazy(() => import('../pages/OurNetwork'))
 const Gallery = lazy(() => import('../pages/Gallery'))
 const Contact = lazy(() => import('../pages/Contact'))
 const NotFound = lazy(() => import('../pages/NotFound'))
@@ -39,6 +40,7 @@ export default function AppRoutes() {
         <Route path="services" element={<Services />} />
         <Route path="products" element={<Products />} />
         <Route path="products/:slug" element={<ProductDetails />} />
+        <Route path="our-network" element={<OurNetwork />} />
         <Route path="our-process" element={<OurProcess />} />
         <Route path="gallery" element={<Gallery />} />
         <Route path="contact" element={<Contact />} />

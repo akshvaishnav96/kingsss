@@ -3,6 +3,7 @@ export const mainNav = [
   { id: 'about', label: 'About Us', to: '/about-us' },
   { id: 'services', label: 'Services', to: '/services' },
   { id: 'products', label: 'Products', to: '/products' },
+  { id: 'network', label: 'Our Network', to: '/our-network' },
   { id: 'process', label: 'Our Process', to: '/our-process' },
   { id: 'gallery', label: 'Gallery', to: '/gallery' },
   { id: 'contact', label: 'Contact', to: '/contact' },

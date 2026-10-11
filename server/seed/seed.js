@@ -1,5 +1,6 @@
 // Seeds the database from server/seed/content (the original static website content).
-//   npm run db:seed            → only if the database has no content yet
+//   npm run db:seed            → empty database: seed everything. Existing database: only ADD content blocks
+//                                that don't exist yet (e.g. a new page); nothing existing is changed.
 //   npm run db:seed -- --force → replace all content (users and enquiries are kept)
 import { copyFile, mkdir, stat } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
@@ -76,8 +77,15 @@ async function seedAdmin() {
 }
 
 async function seedContent() {
-  if (!force && (await prisma.setting.count())) return console.log('Content already present — skipped (use --force to replace).')
   const content = await loadContent()
+
+  if (!force && (await prisma.setting.count())) {
+    // Safe mode: add only the content blocks that are missing; existing content, items and media stay untouched.
+    const existing = new Set((await prisma.setting.findMany({ select: { key: true } })).map((s) => s.key))
+    const missing = SETTINGS_KEYS.filter((key) => !existing.has(key) && content[key] !== undefined)
+    for (const key of missing) await prisma.setting.create({ data: { key, value: await relocateAssets(content[key]) } })
+    return console.log(missing.length ? `Added new content blocks: ${missing.join(', ')} (existing content unchanged).` : 'Content already up to date — nothing added (use --force to replace everything).')
+  }
   console.log(`Seeding content (media storage: ${storageProvider})…`)
 
   const settings = []

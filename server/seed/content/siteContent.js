@@ -204,3 +204,40 @@ export const contactCta = {
   primary: { label: 'Partner With Us', to: '/contact?subject=Supplier%20%2F%20grower%20enquiry' },
   secondary: { label: 'Our Process', to: '/our-process' },
 }
+
+// "Our Network" page — cities are editable in Admin → Our Network page. lat/lng place the dot on the map.
+export const networkPage = {
+  banner: {
+    title: 'Our Network',
+    subtitle: 'A growing sales network across India.',
+    image: images['truck-highway'],
+    imageAlt: 'Truck on an open highway, delivering produce across the country',
+  },
+  intro: {
+    eyebrow: 'Our sales network in India',
+    title: 'Present where the trade happens',
+    text: 'From major metros to key mandi towns, our network connects KINGSSS with wholesalers, distributors and retail buyers across the country.',
+  },
+  cities: [
+    { id: 'jaipur', name: 'Jaipur', state: 'Rajasthan', region: 'North', lat: 26.9124, lng: 75.7873, headOffice: true },
+    { id: 'delhi', name: 'Delhi', state: 'Delhi', region: 'North', lat: 28.6139, lng: 77.209, headOffice: false },
+    { id: 'chandigarh', name: 'Chandigarh', state: 'Chandigarh', region: 'North', lat: 30.7333, lng: 76.7794, headOffice: false },
+    { id: 'malerkotla', name: 'Malerkotla', state: 'Punjab', region: 'North', lat: 30.5309, lng: 75.8799, headOffice: false },
+    { id: 'kanpur', name: 'Kanpur', state: 'Uttar Pradesh', region: 'North', lat: 26.4499, lng: 80.3319, headOffice: false },
+    { id: 'varanasi', name: 'Varanasi', state: 'Uttar Pradesh', region: 'North', lat: 25.3176, lng: 82.9739, headOffice: false },
+    { id: 'mumbai', name: 'Mumbai', state: 'Maharashtra', region: 'West', lat: 19.076, lng: 72.8777, headOffice: false },
+    { id: 'nashik', name: 'Nashik', state: 'Maharashtra', region: 'West', lat: 19.9975, lng: 73.7898, headOffice: false },
+    { id: 'aurangabad', name: 'Aurangabad', state: 'Maharashtra', region: 'West', lat: 19.8762, lng: 75.3433, headOffice: false },
+    { id: 'akola', name: 'Akola', state: 'Maharashtra', region: 'Central', lat: 20.7002, lng: 77.0082, headOffice: false },
+    { id: 'amravati', name: 'Amravati', state: 'Maharashtra', region: 'Central', lat: 20.9374, lng: 77.7796, headOffice: false },
+    { id: 'nagpur', name: 'Nagpur', state: 'Maharashtra', region: 'Central', lat: 21.1458, lng: 79.0882, headOffice: false },
+    { id: 'chandrapur', name: 'Chandrapur', state: 'Maharashtra', region: 'Central', lat: 19.9615, lng: 79.2961, headOffice: false },
+    { id: 'kolkata', name: 'Kolkata', state: 'West Bengal', region: 'East', lat: 22.5726, lng: 88.3639, headOffice: false },
+    { id: 'hyderabad', name: 'Hyderabad', state: 'Telangana', region: 'South', lat: 17.385, lng: 78.4867, headOffice: false },
+    { id: 'vijayawada', name: 'Vijayawada', state: 'Andhra Pradesh', region: 'South', lat: 16.5062, lng: 80.648, headOffice: false },
+    { id: 'bengaluru', name: 'Bengaluru', state: 'Karnataka', region: 'South', lat: 12.9716, lng: 77.5946, headOffice: false },
+    { id: 'kozhikode', name: 'Kozhikode (Calicut)', state: 'Kerala', region: 'South', lat: 11.2588, lng: 75.7804, headOffice: false },
+  ],
+  note: 'And growing — if you would like to work with us in your city, we would be glad to hear from you.',
+  cta: { label: 'Partner With Us', to: '/contact?subject=Partnership%20enquiry' },
+}
