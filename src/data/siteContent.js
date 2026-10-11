@@ -19,7 +19,7 @@ export const contact = {
     { id: 'shahid', name: 'Shahid Ali', number: '+91 94627 99539', whatsapp: true },
     { id: 'jai', name: 'Jai Kumar Agarwal', number: '+91 98280 11300', whatsapp: true },
   ],
-  hours: 'Business hours — to be added',
+  hours: 'Open 24 hours, 7 days a week',
 }
 
 export const socialLinks = [
